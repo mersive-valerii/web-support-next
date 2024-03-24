@@ -4,7 +4,6 @@
   /* padding: 2rem; */
   text-align: center;
   height: 100vh;
-  font-family: "Lato", sans-serif;
   background-color: #fff;
 }
 
@@ -23,7 +22,7 @@ body {
 }
 
 p {
-  font-size: 12px;
+  font-size: 16px;
   color: rgb(84, 82, 82);
 }
 
@@ -56,6 +55,7 @@ p {
   align-content: center;
   justify-content: center;
   margin-left: auto;
+  margin-top: 1rem;
 }
 
 .card-left h2{
