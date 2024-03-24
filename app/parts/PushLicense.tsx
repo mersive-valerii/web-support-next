@@ -82,15 +82,15 @@ export default function PushLicense() {
     setMessageIpTextValue(text);
   }
 
-  // const handelLicenseUploadSuccess = () => {
-  //   setDeviceIPInput("")
-  //   setDevicePasswordInput("")
-  //   setPathToLicenseInput("")
-  //   setInputFile(undefined)
-  //   handleDeviceIPError(true, false, false, "")
-  //   handleDevicePathdError(true, false, false, "")
-  //   handleDevicePasswordError(true, false, false, "Pod with is restarting and the license file is succesfully applied")
-  // }
+  const handelLicenseUploadSuccess = () => {
+    // setDeviceIPInput("")
+    setDevicePasswordInput("")
+    setPathToLicenseInput("")
+    setInputFile(undefined)
+    handleDeviceIPError(true, false, false, "")
+    handleDevicePathdError(true, false, false, "")
+    handleDevicePasswordError(true, false, false, "Pod with is restarting and the license file is succesfully applied")
+  }
 
   const handlePushClick = async () => {
 
@@ -169,6 +169,13 @@ export default function PushLicense() {
         handleDeviceIPError(true, false, false, "")
         handleDevicePathdError(true, false, false, "")
       }
+      
+      // Response from server meaning that probably IP is wrong or we could not reach Pod for too long
+      if (jsonResponse.message === 'Request timeout') {
+        handleDevicePasswordError(false, true, false, "Request exceeded 10 seconds, we recommend checking the network on the Pod, and if IP address is correct or if Pod is powered on")
+        handleDeviceIPError(true, false, false, "")
+        handleDevicePathdError(true, false, false, "")
+      }
 
       //Respnse meaning that license file is wrong
       if (jsonResponse.message === 'Unable to apply license file change') {
@@ -182,8 +189,8 @@ export default function PushLicense() {
       if (jsonResponse.message === "socket hangs up") {
         console.log(jsonResponse)
         setLoading(false)
+        handelLicenseUploadSuccess()
         return
-        // handelLicenseUploadSuccess()
       }
 
       setLoading(false)
