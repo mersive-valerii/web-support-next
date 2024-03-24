@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-// import HelpIcon from "@mui/icons-material/Help";
+import HelpIcon from "@mui/icons-material/Help";
 import { saveAs } from "file-saver";
 import MessageText from "../components/MessageText";
-// import SolsticeInfoTooltip from "../components/SolsticeInfoTooltip";
+import SolsticeInfoTooltip from "../components/SolsticeInfoTooltip";
 // import { useLicenseContext } from "./LicenseContext";
 
 export default function DownloadLicense() {
@@ -172,7 +172,7 @@ export default function DownloadLicense() {
   };
 
   return (
-    <div className="card">
+    <div className="card-left">
 
 <h2>Download License</h2>
       <p>Utilize this tool to download one or multiple license files for Mersive Pods running Solstice version 5.5.3 or higher</p>
@@ -186,7 +186,7 @@ export default function DownloadLicense() {
           onChange={handleInputChange}
         />
         <span>
-          {/* <SolsticeInfoTooltip
+          <SolsticeInfoTooltip
             open={open}
             onClose={handleClose}
             onOpen={handleOpen}
@@ -211,7 +211,7 @@ export default function DownloadLicense() {
             placement="top"
           >
             <HelpIcon className={`icon icon-error-${deviceIdsInputError}`} />
-          </SolsticeInfoTooltip> */}
+          </SolsticeInfoTooltip>
         </span>
       </div>
 

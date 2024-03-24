@@ -3,18 +3,19 @@ const https = require('https');
 
 const FormData = require('form-data');
 
-
 export async function POST(req: Request) {
-    const { podIp, podPassword, LICENSE_pkg } = await req.json(); // Assuming LICENSE_pkg is the file content
+    const { podIp, podPassword, LICENSE_pkg, fileName } = await req.json();
 
     if (!podIp) {
       return new Response("No IP", { status: 400 });
     }
+
+    console.log(fileName)
   
     const url = `https://${podIp}/Config/service/uploadLicense`;
   
     const formData = new FormData();
-    formData.append('LICENSE_pkg', LICENSE_pkg, 'filename.txt'); // Assuming LICENSE_pkg is a string. Adjust 'filename.txt' as needed.
+    formData.append('LICENSE_pkg', LICENSE_pkg, fileName); 
   
     const response = await axios.post(url, formData, {
       headers: {

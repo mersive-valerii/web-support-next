@@ -1,10 +1,9 @@
-// import HelpIcon from '@mui/icons-material/Help';
-// import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-// import VisibilityIcon from '@mui/icons-material/Visibility';
+import HelpIcon from '@mui/icons-material/Help';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useState } from 'react';
 import MessageText from '../components/MessageText';
-// import SolsticeInfoTooltip from '../components/SolsticeInfoTooltip';
-import addresPreview from '../assets/address-preview.svg'
+import SolsticeInfoTooltip from '../components/SolsticeInfoTooltip';
 // import { useLicenseContext } from './LicenseContext';
 import React, { useEffect } from 'react';
 
@@ -132,7 +131,8 @@ export default function PushLicense() {
   const requestBody = {
     LICENSE_pkg: fileContent,
     podIp: deviceIPInput,
-    podPassword: devicePasswordInput
+    podPassword: devicePasswordInput,
+    fileName: pathToLicenseInput
   };
 
   // Serialize the object to JSON
@@ -223,7 +223,7 @@ export default function PushLicense() {
 
 
   return (
-    <div className="card">
+    <div className="card-right">
 
       <h2>Push License</h2>
       <p>Utilize this tool to push one license file to a Mersive Pod running Solstice version 5.5.3 or higher.</p>
@@ -234,18 +234,18 @@ export default function PushLicense() {
           onChange={handleIPInputChange} />
         <span>
 
-          {/* <SolsticeInfoTooltip open={open} onClose={handleClose} onOpen={handleOpen} title={
+ <SolsticeInfoTooltip open={open} onClose={handleClose} onOpen={handleOpen} title={
             <div>
               <h5 style={{ color: "white", fontSize: "medium" }} >
                 Where is the display address?
               </h5>
-              <img src={addresPreview} alt="Vite logo" />
+              <img src={'/address-preview.svg'} alt="Vite logo" />
               <p style={{ color: "white", fontSize: "small" }}>The address starts with http:// and is usually located at the top right of the room display.</p>
             </div>
           } placement="top">
             <HelpIcon className={`icon icon-error-${deviceIPError}`} />
 
-          </SolsticeInfoTooltip> */}
+          </SolsticeInfoTooltip> 
           <span />
         </span>
       </div>
@@ -255,10 +255,10 @@ export default function PushLicense() {
         <input className={`input-field device-field-error-${devicePasswordError}`} placeholder='Pod password  (if set)' type={passwordVisability ? "text" : "password"} value={devicePasswordInput}
           onChange={handlePasswordInputChange} />
 
-        {/* <span onClick={handlePasswordVisability}>
+        <span onClick={handlePasswordVisability}>
           {passwordVisability ? <VisibilityIcon className={`icon icon-error-${devicePasswordError}`} /> : <VisibilityOffIcon className={`icon icon-error-${devicePasswordError}`} />}
 
-        </span> */}
+        </span>
       </div>
 
 
