@@ -18,4 +18,4 @@ bun dev
 
 docker build -t <name> .
 
-docker run -p 8089:3000 -d --rm --name <imageName>
+docker run -p 8089:3000 -d --rm --name <name> <imageName>
