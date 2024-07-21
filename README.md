@@ -18,4 +18,6 @@ bun dev
 
 docker build -t <name> .
 
-docker run -p 8089:3000 -d --rm --name <imageName>
+docker run -p 3000:3000 -d --rm --name <imageName>
+
+docker run -p 3000:3000 -d --rm --name test dohiii/next-new

@@ -5,7 +5,7 @@ export async function POST(req: NextRequest) {
     try {
         const { podIp, podPassword, LICENSE_pkg, fileName } = await req.json();
 
-        const socket = io('http://127.0.0.1:8080');
+        const socket = io('http://<CLOUD_SERVER_IP>:8080');
 
         return new Promise((resolve, reject) => {
             socket.emit('uploadLicense', { podIp, podPassword, LICENSE_pkg, fileName });

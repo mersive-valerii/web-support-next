@@ -101,12 +101,12 @@ export default function PushLicense() {
       return
     }
 
-    if (devicePasswordInput.length <= 0) {
-      handleDevicePasswordError(false, true, false, "Please enter a Pods password try again.")
-      handleDeviceIPError(true, false, false, "")
-      handleDevicePathdError(true, false, false, "")
-      return
-    }
+    // if (devicePasswordInput.length <= 0) {
+    //   handleDevicePasswordError(false, true, false, "Please enter a Pods password try again.")
+    //   handleDeviceIPError(true, false, false, "")
+    //   handleDevicePathdError(true, false, false, "")
+    //   return
+    // }
 
     if (pathToLicenseInput.length <= 0) {
       handleDevicePathdError(false, true, false, "Please select .bin licesne file and try again.")
@@ -124,36 +124,36 @@ export default function PushLicense() {
     try {
       setLoading(true);
 
-  // Read the content of the file
-  const fileContent = await file.text();
+      // Read the content of the file
+      const fileContent = await file.text();
 
-  // Create the request body object
-  const requestBody = {
-    LICENSE_pkg: fileContent,
-    podIp: deviceIPInput,
-    podPassword: devicePasswordInput,
-    fileName: pathToLicenseInput
-  };
+      // Create the request body object
+      const requestBody = {
+        LICENSE_pkg: fileContent,
+        podIp: deviceIPInput,
+        podPassword: devicePasswordInput,
+        fileName: pathToLicenseInput
+      };
 
-  // Serialize the object to JSON
-  const requestBodyJSON = JSON.stringify(requestBody);
+      // Serialize the object to JSON
+      const requestBodyJSON = JSON.stringify(requestBody);
 
-  // Send the request
-  const response = await fetch(serverURL, {
-    method: "POST",
-    body: requestBodyJSON,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+      // Send the request
+      const response = await fetch(serverURL, {
+        method: "POST",
+        body: requestBodyJSON,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-  const responseBody = await response.text(); // Read the response as text
+      const responseBody = await response.text(); // Read the response as text
 
 
-  // Now try to parse the response as JSON
-  const jsonResponse = JSON.parse(responseBody);
+      // Now try to parse the response as JSON
+      const jsonResponse = JSON.parse(responseBody);
 
-  console.log(jsonResponse)
+      console.log(jsonResponse)
 
 
       // Response from server meaning that IP is wrong or Pod is anreachable
@@ -169,7 +169,7 @@ export default function PushLicense() {
         handleDeviceIPError(true, false, false, "")
         handleDevicePathdError(true, false, false, "")
       }
-      
+
       // Response from server meaning that probably IP is wrong or we could not reach Pod for too long
       if (jsonResponse.message === 'Request timeout') {
         handleDevicePasswordError(false, true, false, "Request exceeded 10 seconds, we recommend checking the network on the Pod, and if IP address is correct or if Pod is powered on")
@@ -241,7 +241,7 @@ export default function PushLicense() {
           onChange={handleIPInputChange} />
         <span>
 
- <SolsticeInfoTooltip open={open} onClose={handleClose} onOpen={handleOpen} title={
+          <SolsticeInfoTooltip open={open} onClose={handleClose} onOpen={handleOpen} title={
             <div>
               <h5 style={{ color: "white", fontSize: "medium" }} >
                 Where is the display address?
@@ -252,7 +252,7 @@ export default function PushLicense() {
           } placement="top">
             <HelpIcon className={`icon icon-error-${deviceIPError}`} />
 
-          </SolsticeInfoTooltip> 
+          </SolsticeInfoTooltip>
           <span />
         </span>
       </div>
